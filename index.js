@@ -68,6 +68,29 @@ app.post('/payments/stripe/session', async (req, res) => {
   }
 });
 
+// ===== Mercado Pago redirecciones de prueba =====
+app.get("/pago-exitoso-test", (_req, res) => {
+  res.type("html").send(`
+    <!doctype html><html lang="es"><meta charset="utf-8">
+    <title>Pago aprobado</title>
+    <body style="font-family:Arial;text-align:center;padding:50px">
+      <h1 style="color:green">✅ Pago aprobado</h1>
+      <p>Tu pago de prueba en Mercado Pago fue exitoso.</p>
+    </body></html>
+  `);
+});
+
+app.get("/pago-fallido-test", (_req, res) => {
+  res.type("html").send(`
+    <!doctype html><html lang="es"><meta charset="utf-8">
+    <title>Pago rechazado</title>
+    <body style="font-family:Arial;text-align:center;padding:50px">
+      <h1 style="color:red">❌ Pago rechazado</h1>
+      <p>Tu pago de prueba fue rechazado o cancelado.</p>
+    </body></html>
+  `);
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en puerto ${PORT}`);
